@@ -42,16 +42,20 @@ export class AzureRerank extends BaseDocumentCompressor {
             documents: documents.map((doc) => doc.pageContent)
         }
         try {
-            let returnedDocs = await axios.post(this.AZURE_API_URL, data, config)
+            const returnedDocs = await axios.post(this.AZURE_API_URL, data, config)
             const finalResults: Document<Record<string, any>>[] = []
-            returnedDocs.data.results.forEach((result: any) => {
+            interface RerankResult {
+                index: number
+                relevance_score: number
+            }
+            returnedDocs.data.results.forEach((result: RerankResult) => {
                 const doc = documents[result.index]
                 doc.metadata.relevance_score = result.relevance_score
                 finalResults.push(doc)
             })
-            return finalResults.splice(0, this.k)
+            return finalResults
         } catch (error) {
-            return documents
+            throw new Error(`Azure Rerank API call failed: ${error.message}`)
         }
     }
 }
