@@ -149,8 +149,7 @@ class ConversationalRetrievalSafeToolAgent_Agents implements INode {
                 label: 'Guardrail Prompt',
                 name: 'guardrailPrompt',
                 type: 'string',
-                description:
-                    'Validate/sanitise user input. Return ONLY JSON: {"action":"allow|block","text":"...","reason":"..."}',
+                description: 'Validate/sanitise user input. Return ONLY JSON: {"action":"allow|block","text":"...","reason":"..."}',
                 warning: 'Prompt must include input variable: {input}',
                 rows: 6,
                 additionalParams: true,
@@ -172,7 +171,6 @@ Input: {input}`
                 optional: true,
                 additionalParams: true
             },
-
             {
                 label: 'Input Moderation',
                 description: 'Detect text that could generate harmful output and prevent it from being sent to the language model',
