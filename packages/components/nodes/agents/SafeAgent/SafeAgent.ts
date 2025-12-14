@@ -166,8 +166,7 @@ Input: {input}`
                 label: 'Guardrail Model',
                 name: 'guardrailModel',
                 type: 'BaseChatModel',
-                description:
-                    'Optional: Use a different model for guardrails. If not specified, guardrails are skipped.',
+                description: 'Optional: Use a different model for guardrails. If not specified, guardrails are skipped.',
                 optional: true,
                 additionalParams: true
             },
